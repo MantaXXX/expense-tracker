@@ -1,6 +1,6 @@
 const express = require("express")
 const exphbs = require("express-handlebars")
-const PORT = 4000
+const PORT = 3000
 
 const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
