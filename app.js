@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const Record = require('./models/record')
 const bodyParser = require('body-parser')
 const helper = require('./helper')
-const PORT = 3000
+const PORT = 4100
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
     .lean()
     .then(records => {
       let totalAmount = records.map(record => record.amount).reduce((a, b) => a + b, 0)
-
       res.render('index', { records, totalAmount })
     })
     .catch(error => console.log(error))
@@ -81,6 +80,17 @@ app.get('/records/:id/delete', (req, res) => {
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
+})
+
+app.get('/filter/:category', (req, res) => {
+  Record.find()
+    .lean()
+    .then(record => {
+      const category = req.params.category
+      const records = record.filter(filterRecord => { return filterRecord.category === category })
+      const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
+      res.render('index', { records, totalAmount, category })
+    })
 })
 
 
