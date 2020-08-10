@@ -3,10 +3,11 @@
     <div class="category mt-3">
       <select class="form-control" id="exampleFormControlSelect1">
         <option value="類別" selected>總支出</option>
-        <option value="交通費">交通費</option>
-        <option value="電信費">電信費</option>
-        <option value="飲食費">飲食費</option>
-        <option value="水電費">水電費</option>
+        <option value="交通費">家居物業</option>
+        <option value="電信費">交通出行</option>
+        <option value="電信費">休閒娛樂</option>
+        <option value="電信費">餐飲食品</option>
+        <option value="電信費">其他</option>
       </select>
     </div>
 
@@ -33,9 +34,9 @@
           </div>
 
           <div class="col-4" style="text-align: center; line-height: 100px">
-            <form action="" method=" POST">
-              <a class="btn btn-outline-success" href="./records/{{ this._id }}/edit">Edit</a>
-              <button class="btn btn-outline-danger">Delete</button>
+            <a class="btn btn-outline-success" href="./records/{{ this._id }}/edit">Edit</a>
+            <form action="/records/{{ this._id }}/delete" method=" POST" style="display: inline;">
+              <button type="submit" class="btn btn-outline-danger">Delete</button>
             </form>
           </div>
         </li>
