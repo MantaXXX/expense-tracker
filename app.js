@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const Record = require('./models/record')
+const bodyParser = require('body-parser')
 const PORT = 4000
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -17,6 +18,7 @@ db.once('open', () => {
 const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.get('/', (req, res) => {
@@ -27,12 +29,21 @@ app.get('/', (req, res) => {
 })
 
 // New
-app.get('/new', (req, res) => {
-  res.render('new')
+app.get('/record/new', (req, res) => {
+  return res.render('new')
 })
 
-app.post('/new', (req, res) => {
-
+app.post('/records', (req, res) => {
+  console.log(req.body)
+  const { name, category, date, amount } = req.body
+  return Record.create({
+    name,
+    category,
+    date,
+    amount
+  })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
 })
 
 app.listen(PORT, () => {
