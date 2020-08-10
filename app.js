@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const Record = require('./models/record')
 const bodyParser = require('body-parser')
-const PORT = 4000
+const PORT = 3000
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -24,7 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Record.find()
     .lean()
-    .then(records => res.render('index', { records }))
+    .then(records => {
+      let totalAmount = records.map(record => record.amount).reduce((a, b) => a + b, 0)
+
+      res.render('index', { records, totalAmount })
+    })
     .catch(error => console.log(error))
 })
 

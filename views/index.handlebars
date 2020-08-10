@@ -2,7 +2,7 @@
   <div class="col-7">
     <div class="category mt-3">
       <select class="form-control" id="exampleFormControlSelect1">
-        <option value="類別" selected>總支出</option>
+        <option value="類別" selected>類別</option>
         <option value="交通費">家居物業</option>
         <option value="電信費">交通出行</option>
         <option value="電信費">休閒娛樂</option>
@@ -12,9 +12,9 @@
     </div>
 
     <div class="my-4">
-      <span>總金額</span>
+      <span>總支出</span>
       <input type="text" style="color: #FF8000; width: 300px; border: none; padding-left: 20px; font-size: 40px;"
-        name="number" value="25555" disabled>
+        name="number" value="{{ totalAmount }}" disabled>
     </div>
     <div class="my-3">
       <ul class="list-group">
