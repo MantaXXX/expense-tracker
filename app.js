@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: 'asc' })
     .then(records => {
       let totalAmount = records.map(record => record.amount).reduce((a, b) => a + b, 0)
       res.render('index', { records, totalAmount })
@@ -85,6 +86,7 @@ app.get('/records/:id/delete', (req, res) => {
 app.get('/filter/:category', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: 'asc' })
     .then(record => {
       const category = req.params.category
       const records = record.filter(filterRecord => { return filterRecord.category === category })
