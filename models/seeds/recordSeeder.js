@@ -12,13 +12,11 @@ db.once('open', () => {
   console.log('mongoDB connected!')
   recordData.forEach(data => {
     Record.create({
-      name: `${date.name}`,
-      category: `${date.category}`,
-      date: `${date.date}`,
-      amount: `${date.amount}`
+      name: `${data.name}`,
+      category: `${data.category}`,
+      date: `${data.date}`,
+      amount: `${data.amount}`
     })
   })
-  console.log('Done!');
+  console.log('Done!')
 })
-
-module.exports = mongoose.model('Record', recordSchema)
