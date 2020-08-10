@@ -2,19 +2,19 @@
   "results": [
     {
       "name": "早餐",
-      "category": "餐飲開支",
+      "category": "餐飲食品",
       "date": "2020/04/04",
       "amount": "60"
     },
     {
       "name": "電影：鋼鐵俠",
-      "category": "娛樂開支",
+      "category": "休閒娛樂",
       "date": "2020/04/10",
       "amount": "300"
     },
     {
       "name": "球鞋",
-      "category": "治裝費",
+      "category": "家居物業",
       "date": "2020/04/15",
       "amount": "3000"
     }

@@ -2,12 +2,12 @@
   <div class="col-7">
     <div class="category mt-3">
       <select class="form-control" id="exampleFormControlSelect1">
-        <option value="類別" selected>類別</option>
-        <option value="交通費">家居物業</option>
-        <option value="電信費">交通出行</option>
-        <option value="電信費">休閒娛樂</option>
-        <option value="電信費">餐飲食品</option>
-        <option value="電信費">其他</option>
+        <option value="/" selected>全部</option>
+        <option value="/filter/家居物業">家居物業</option>
+        <option value="/filter/交通出行">交通出行</option>
+        <option value="/filter/休閒娛樂">休閒娛樂</option>
+        <option value="/filter/餐飲食品">餐飲食品</option>
+        <option value="/filter/其他">其他</option>
       </select>
     </div>
 
@@ -18,10 +18,17 @@
     </div>
     <div class="my-3">
       <ul class="list-group">
+
         {{#each records}}
         <li class="list-group-item d-flex align-items-center" style="height: 100px;">
           <div class="col-2" style="text-align: center; line-height: 100px">
-            <i class="fas fa-utensils fa-2x"></i>
+            <i class="
+              {{#if_same this.category '家居物業'}}fas fa-home fa-2x{{/if_same}}
+              {{#if_same this.category '交通出行'}}fas fa-shuttle-van fa-2x{{/if_same}}
+              {{#if_same this.category '休閒娛樂'}}fas fa-grin-beam fa-2x{{/if_same}}
+              {{#if_same this.category '餐飲食品'}}fas fa-utensils fa-2x{{/if_same}}
+              {{#if_same this.category '其他'}}fas fa-pen fa-2x{{/if_same}}
+              " style="color: #C4E1E1"></i>
           </div>
 
           <div class="col-4">
@@ -41,6 +48,7 @@
           </div>
         </li>
         {{/each}}
+
       </ul>
     </div>
   </div>
