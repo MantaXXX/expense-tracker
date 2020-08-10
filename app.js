@@ -34,7 +34,6 @@ app.get('/record/new', (req, res) => {
 })
 
 app.post('/records', (req, res) => {
-  console.log(req.body)
   const { name, category, date, amount } = req.body
   return Record.create({
     name,
@@ -45,6 +44,32 @@ app.post('/records', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+// edit
+app.get('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then(records => res.render('edit', { records }))
+    .catch(error => console.log(error))
+})
+
+app.post('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  const { name, category, date, amount } = req.body
+  return Record.findById(id)
+    .then(record => {
+      record.name = name
+      record.category = category
+      record.date = date
+      record.amount = amount
+      return record.save()
+    })
+    .then(() => res.redirect(`/`))
+    .catch(error => console.log(error))
+})
+
+
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`);
