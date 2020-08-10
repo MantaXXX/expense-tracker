@@ -1,9 +1,10 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const Record = mongoose.model('./models')
 const PORT = 3000
 
-mongoose.connect('mongodb://localhost/expenseTracker', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 
 db.on('error', () => {
