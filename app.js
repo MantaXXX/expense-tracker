@@ -6,7 +6,8 @@ const Category = require('./models/category')
 const bodyParser = require('body-parser')
 const helper = require('./helper')
 const category = require('./models/category')
-const PORT = 4100
+const methodOverride = require('method-override')
+const PORT = 3000
 
 mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
@@ -22,6 +23,7 @@ const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 
 app.get('/', (req, res) => {
@@ -66,7 +68,7 @@ app.get('/records/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/records/:id/edit', (req, res) => {
+app.put('/records/:id', (req, res) => {
   const id = req.params.id
   const { name, category, date, amount } = req.body
   return Record.findById(id)
@@ -82,7 +84,7 @@ app.post('/records/:id/edit', (req, res) => {
 })
 
 // Delete
-app.get('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .then(record => record.remove())

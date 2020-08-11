@@ -42,7 +42,7 @@
 
           <div class="col-4" style="text-align: center; line-height: 100px">
             <a class="btn btn-outline-success" href="./records/{{ this._id }}/edit">Edit</a>
-            <form action="/records/{{ this._id }}/delete" method=" POST" style="display: inline;">
+            <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
               <button type="submit" class="btn btn-outline-danger">Delete</button>
             </form>
           </div>

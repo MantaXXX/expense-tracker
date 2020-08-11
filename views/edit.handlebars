@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center mt-3" style="height: 500px;">
   <div class="d-flex my-auto justify-content-center" style="width: 45%; background-color: #FAFAFA">
 
-    <form class="d-flex flex-column" style="width: 70%; height:100%" action="/records/{{ records._id }}/edit"
+    <form class="d-flex flex-column" style="width: 70%; height:100%" action="/records/{{ records._id }}?_method=PUT"
       method="POST">
       <h4 class="mx-auto mt-3">請輸入你的支出</h4>
       <div class="d-flex mx-auto flex-column justify-content-center ">
