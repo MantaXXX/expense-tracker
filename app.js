@@ -8,17 +8,8 @@ const helper = require('./helper')
 const category = require('./models/category')
 const methodOverride = require('method-override')
 const routes = require('./routes')
+require('./config/mongoose')
 const PORT = 3000
-
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('error');
-})
-db.once('open', () => {
-  console.log('mongoDB connected!');
-})
 
 const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))

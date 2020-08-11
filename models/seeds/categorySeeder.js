@@ -1,14 +1,8 @@
-const mongoose = require('mongoose')
+const db = require('../../config/mongoose')
 const Category = require('../category')
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useUnifiedTopology: true })
 
-const db = mongoose.connection
 
-db.on('error', () => {
-  console.log('error');
-})
 db.once('open', () => {
-  console.log('mongoDB connected!')
   Category.create(
     {
       category: '家居物業',
