@@ -9,7 +9,7 @@ const category = require('./models/category')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 require('./config/mongoose')
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 const app = express()
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
