@@ -1,14 +1,16 @@
 <div class="container d-flex justify-content-center">
   <div class="col-7">
     <div class="category mt-3">
-      <select class="form-control" name="category" onchange="location=value">
-        <option value="/" selected>全部</option>
-        <option value="/filter/家居物業" {{#if_same category '家居物業'}} selected {{/if_same}}>家居物業</option>
-        <option value="/filter/交通出行" {{#if_same category '交通出行'}} selected {{/if_same}}>交通出行</option>
-        <option value="/filter/休閒娛樂" {{#if_same category '休閒娛樂'}} selected {{/if_same}}>休閒娛樂</option>
-        <option value="/filter/餐飲食品" {{#if_same category '餐飲食品'}} selected {{/if_same}}>餐飲食品</option>
-        <option value="/filter/其他" {{#if_same category '其他'}} selected {{/if_same}}>其他</option>
-      </select>
+      <form action="/filter">
+        <select class="form-control" name="category" onchange="this.form.submit()">
+          <option name="全部" selected>全部</option>
+          <option name="家居物業" {{#if_same category '家居物業'}} selected {{/if_same}}>家居物業</option>
+          <option name="交通出行" {{#if_same category '交通出行'}} selected {{/if_same}}>交通出行</option>
+          <option name="休閒娛樂" {{#if_same category '休閒娛樂'}} selected {{/if_same}}>休閒娛樂</option>
+          <option name="餐飲食品" {{#if_same category '餐飲食品'}} selected {{/if_same}}>餐飲食品</option>
+          <option name="其他" {{#if_same category '其他'}} selected {{/if_same}}>其他</option>
+        </select>
+      </form>
     </div>
 
     <div class="my-4">

@@ -4,18 +4,23 @@ const Category = require('../../models/category')
 
 const router = express.Router()
 
-router.get('/:category', (req, res) => {
+router.get('/', (req, res) => {
   Category.find()
     .lean()
     .then(categories => {
       Record.find()
         .lean()
         .sort({ date: 'asc' })
-        .then(record => {
-          const category = req.params.category
-          const records = record.filter(filterRecord => { return filterRecord.category === category })
-          const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
-          res.render('index', { records, totalAmount, category })
+        .then(records => {
+          const category = req.query.category
+          if (category === '全部') {
+            const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
+            return res.render('index', { records, totalAmount })
+          } else {
+            const filteredRecords = records.filter(filterRecord => filterRecord.category === category)
+            const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
+            res.render('index', { records: filteredRecords, totalAmount, category })
+          }
         })
         .catch(error => console.log(error))
     })
