@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
         .sort({ date: 'asc' })
         .then(records => {
           const category = req.query.category
-          if (category === '全部') {
-            const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
-            return res.render('index', { records, totalAmount })
-          } else {
-            const filteredRecords = records.filter(filterRecord => filterRecord.category === category)
-            const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
-            res.render('index', { records: filteredRecords, totalAmount, category })
-          }
+          // if (category === '全部') {
+          //   const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
+          //   return res.render('index', { records, totalAmount })
+          // } else {
+          const filteredRecords = records.filter(filterRecord => filterRecord.category === category)
+          const totalAmount = records.map(filteredRecord => filteredRecord.amount).reduce((a, b) => { return a + b }, 0)
+          res.render('index', { records: filteredRecords, totalAmount, category })
+          // }
         })
         .catch(error => console.log(error))
     })
